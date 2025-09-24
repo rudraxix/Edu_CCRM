@@ -1,6 +1,8 @@
 package edu.ccrm.cli;
 
 import edu.ccrm.domain.*;
+import edu.ccrm.exceptions.DuplicateEnrollmentException;
+import edu.ccrm.exceptions.MaxCreditLimitExceededException;
 import edu.ccrm.service.Management;
 
 import java.time.LocalDate;
@@ -107,6 +109,7 @@ public class MainCLI {
     }
 
     // ------------------ ENROLLMENT & GRADES ------------------
+ // ------------------ ENROLLMENT & GRADES ------------------
     private static void manageEnrollment(Management ms, Scanner sc) {
         System.out.println("\n--- Enrollment & Grades ---");
         System.out.println("1. Enroll Student in Course");
@@ -117,35 +120,37 @@ public class MainCLI {
 
         switch (choice) {
             case 1 -> {
-                System.out.print("Enter Student ID: "); String sid = sc.nextLine();
-                System.out.print("Enter Course Code: "); String ccode = sc.nextLine();
-                ms.listStudents().stream()
-                        .filter(s -> s.getId().equals(sid))
-                        .findFirst()
-                        .ifPresent(s -> ms.listCourses().stream()
-                                .filter(c -> c.getCode().equals(ccode))
-                                .findFirst()
-                                .ifPresent(s::enrollCourse));
-                System.out.println("Enrollment done.");
+                System.out.print("Enter Student ID: "); 
+                String sid = sc.nextLine();
+                System.out.print("Enter Course Code: "); 
+                String ccode = sc.nextLine();
+                try {
+                    ms.enrollStudent(sid, ccode);
+                    System.out.println("Enrollment successful.");
+                } catch (DuplicateEnrollmentException e) {
+                    System.out.println("Error: Student is already enrolled in this course.");
+                } catch (MaxCreditLimitExceededException e) {
+                    System.out.println("Error: Enrollment exceeds maximum allowed credits.");
+                }
             }
             case 2 -> {
-                System.out.print("Enter Student ID: "); String sid = sc.nextLine();
-                System.out.print("Enter Course Code: "); String ccode = sc.nextLine();
-                ms.listStudents().stream()
-                        .filter(s -> s.getId().equals(sid))
-                        .findFirst()
-                        .ifPresent(s -> ms.listCourses().stream()
-                                .filter(c -> c.getCode().equals(ccode))
-                                .findFirst()
-                                .ifPresent(s::unenrollCourse));
+                System.out.print("Enter Student ID: "); 
+                String sid = sc.nextLine();
+                System.out.print("Enter Course Code: "); 
+                String ccode = sc.nextLine();
+                ms.unenrollStudent(sid, ccode);
                 System.out.println("Unenrollment done.");
             }
             case 3 -> {
-                System.out.print("Enter Student ID: "); String sid = sc.nextLine();
+                System.out.print("Enter Student ID: "); 
+                String sid = sc.nextLine();
                 ms.listStudents().stream()
                         .filter(s -> s.getId().equals(sid))
                         .findFirst()
-                        .ifPresent(Student::printProfile);
+                        .ifPresentOrElse(
+                            Student::printProfile,
+                            () -> System.out.println("Student not found.")
+                        );
             }
             default -> System.out.println("Invalid choice.");
         }
