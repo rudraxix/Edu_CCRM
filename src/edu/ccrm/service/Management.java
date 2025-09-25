@@ -22,9 +22,8 @@ public class Management {
     }
 
     public void deactivateStudent(String id) {
-        if (students.containsKey(id)) {
-            students.get(id).deactivate();
-        }
+        Student s = students.get(id);
+        if (s != null) s.deactivate();
     }
 
     // ---------------- COURSE MANAGEMENT ----------------
@@ -45,29 +44,42 @@ public class Management {
     }
 
     // ---------------- ENROLLMENT ----------------
-    public void enrollStudent(String sid, String courseCode) throws DuplicateEnrollmentException, MaxCreditLimitExceededException {
+    public void enrollStudent(String sid, String courseCode) 
+            throws DuplicateEnrollmentException, MaxCreditLimitExceededException {
         Student s = students.get(sid);
         Course c = courses.get(courseCode);
 
-        if (s == null || c == null) return; // skip if not found
+        if (s == null || c == null) return;
 
-        if (s.getEnrolledCourses().contains(c)) {
-            throw new DuplicateEnrollmentException();
-        }
+        boolean alreadyEnrolled = s.getEnrollments().stream()
+                                   .anyMatch(e -> e.getCourse().equals(c));
+        if (alreadyEnrolled) throw new DuplicateEnrollmentException();
 
-        int currentCredits = s.getEnrolledCourses().stream().mapToInt(Course::getCredits).sum();
-        if (currentCredits + c.getCredits() > MAX_CREDITS) {
+        int currentCredits = s.getEnrollments().stream()
+                              .mapToInt(e -> e.getCourse().getCredits())
+                              .sum();
+        if (currentCredits + c.getCredits() > MAX_CREDITS) 
             throw new MaxCreditLimitExceededException();
-        }
 
-        s.enrollCourse(c);
+        s.enrollCourse(c); // FIXED to match Student
     }
 
     public void unenrollStudent(String sid, String courseCode) {
         Student s = students.get(sid);
         Course c = courses.get(courseCode);
         if (s != null && c != null) {
-            s.unenrollCourse(c);
+            s.unenrollCourse(c); // FIXED
         }
+    }
+
+    // ---------------- GRADES ----------------
+    public void assignGrade(String sid, String courseCode, Grade grade) {
+        Student s = students.get(sid);
+        if (s == null) return;
+
+        s.getEnrollments().stream()
+         .filter(e -> e.getCourse().getCode().equals(courseCode))
+         .findFirst()
+         .ifPresent(e -> e.setGrade(grade)); // FIXED
     }
 }
