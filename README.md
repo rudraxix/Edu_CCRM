@@ -44,7 +44,7 @@ Features include adding students/courses, enrollment with credit limits, duplica
 ## 🖥️ Installation & Setup
 ### Install JDK on Windows
 1. Download from Oracle/OpenJDK.
-2. Install to `C:\Program Files\Java\jdk-17\`
+2. Install to your desired location
 3. Set `JAVA_HOME` and update `PATH`.
 
 ✅ Verify:
