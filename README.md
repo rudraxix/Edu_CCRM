@@ -58,7 +58,7 @@ Features include adding students/courses, enrollment with credit limits, duplica
 
 - **Program Running:**  
   ![Program Execution ](Eclipse_CLIRun.png)
-  ![Program Execution - Student](Eclipse_CLIStudentdemo.png
-  ![Program Execution - Course](Eclipse_CLICoursedemo.png
-  ![Program Execution - Enrollment](Eclipse_CLICourseEnrollmentdemo.png
+  ![Program Execution - Student](Eclipse_CLIStudentdemo.png)
+  ![Program Execution - Course](Eclipse_CLICoursedemo.png)
+  ![Program Execution - Enrollment](Eclipse_CLICourseEnrollmentdemo.png)
 
