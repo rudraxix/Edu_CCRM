@@ -47,7 +47,18 @@ Features include adding students/courses, enrollment with credit limits, duplica
 2. Install to your desired location
 3. Set `JAVA_HOME` and update `PATH`.
 
-✅ Verify:
-```bash
-java -version
-javac -version
+
+## 📷 Screenshots
+
+- **JDK Verification:**  
+  ![JDK Version](Java_Version.png)
+
+- **Eclipse Setup:**  
+  ![Eclipse Setup](Eclipse_Projectworkspace.png)
+
+- **Program Running:**  
+  ![Program Execution ](Eclipse_CLIRun.png)
+  ![Program Execution - Student](Eclipse_CLIStudentdemo.png
+  ![Program Execution - Course](Eclipse_CLICoursedemo.png
+  ![Program Execution - Enrollment](Eclipse_CLICourseEnrollmentdemo.png
+
