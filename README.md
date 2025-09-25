@@ -1,11 +1,11 @@
 # Campus Course Records Manager (CCRM)
 
-## 📌 Project Overview
+## Project Overview
 CCRM is a Java-based CLI project to manage students, courses, and enrollments in a university.  
 Features include adding students/courses, enrollment with credit limits, duplicate-check prevention, and custom exception handling.
 
-## ▶️ How to Run
-- **JDK Version**: Java 17 (tested on Eclipse IDE 2023-09)
+## How to Run
+- **JDK Version**: Java 25 (tested on Eclipse IDE 2025-09)
 - **Steps**:
   1. Clone the repo:  
      ```bash
@@ -17,7 +17,7 @@ Features include adding students/courses, enrollment with credit limits, duplica
 
 ---
 
-## 🧾 Evolution of Java (short bullets)
+## Evolution of Java (short bullets)
 - **1995**: Java 1.0 released – “Write Once, Run Anywhere”
 - **2004**: Java 5 introduced Generics, Annotations, Enums
 - **2011**: Java 7 – try-with-resources, NIO.2
@@ -34,21 +34,21 @@ Features include adding students/courses, enrollment with credit limits, duplica
 
 ---
 
-## ⚙️ JDK / JRE / JVM
+## JDK / JRE / JVM
 - **JVM**: Virtual machine that runs Java bytecode.
 - **JRE**: JVM + runtime libraries (for running Java).
 - **JDK**: JRE + compilers + dev tools (for developing Java).
 
 ---
 
-## 🖥️ Installation & Setup
+## Installation & Setup
 ### Install JDK on Windows
 1. Download from Oracle/OpenJDK.
 2. Install to your desired location
 3. Set `JAVA_HOME` and update `PATH`.
 
 
-## 📷 Screenshots
+## Screenshots
 
 - **JDK Verification:**  
   ![JDK Version](Java_Version.png)
